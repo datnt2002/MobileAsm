@@ -8,10 +8,11 @@ public class HikeModel {
     private boolean parkingAvailable;
     private int hikeLength;
     private int hikeLevel;
-    private String hikeDescription;
     private int hikeEstimate;
+    private String hikeDescription;
 
-    public HikeModel(int id, String hikeName, String hikeLocation, String hikeDate, boolean parkingAvailable, int hikeLength, int hikeLevel, String hikeDescription, int hikeEstimate) {
+
+    public HikeModel(int id, String hikeName, String hikeLocation, String hikeDate, boolean parkingAvailable, int hikeLength, int hikeLevel, int hikeEstimate, String hikeDescription) {
         this.id = id;
         this.hikeName = hikeName;
         this.hikeLocation = hikeLocation;
@@ -19,8 +20,8 @@ public class HikeModel {
         this.parkingAvailable = parkingAvailable;
         this.hikeLength = hikeLength;
         this.hikeLevel = hikeLevel;
-        this.hikeDescription = hikeDescription;
         this.hikeEstimate = hikeEstimate;
+        this.hikeDescription = hikeDescription;
     }
 
     public int getId() {

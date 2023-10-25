@@ -10,4 +10,5 @@
     <string name="LengthOfHike">Length Of Hike</string>
     <string name="HikeEstimate">Hike Estimate</string>
     <string name="HikeDescription">Description</string>
+    <string name="HikeLevel">Level Of Hike</string>
 </resources>
