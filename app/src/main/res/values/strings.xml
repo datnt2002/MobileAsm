@@ -2,4 +2,12 @@
     <string name="app_name">MobileAsm</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="DetailOfHikes">Detail Of Hikes</string>
+    <string name="HikeName">Name Of Hike</string>
+    <string name="HikeLocation">Location</string>
+    <string name="HikeDate">Date Of The Hike</string>
+    <string name="ParkingAvailable">Available</string>
+    <string name="LengthOfHike">Length Of Hike</string>
+    <string name="HikeEstimate">Hike Estimate</string>
+    <string name="HikeDescription">Description</string>
 </resources>
