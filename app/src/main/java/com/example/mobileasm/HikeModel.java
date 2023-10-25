@@ -1,7 +1,7 @@
 package com.example.mobileasm;
 
 public class HikeModel {
-    private int id;
+    private int hikeId;
     private String hikeName;
     private String hikeLocation;
     private String hikeDate;
@@ -12,8 +12,8 @@ public class HikeModel {
     private String hikeDescription;
 
 
-    public HikeModel(int id, String hikeName, String hikeLocation, String hikeDate, boolean parkingAvailable, int hikeLength, int hikeLevel, int hikeEstimate, String hikeDescription) {
-        this.id = id;
+    public HikeModel(int hikeId, String hikeName, String hikeLocation, String hikeDate, boolean parkingAvailable, int hikeLength, int hikeLevel, int hikeEstimate, String hikeDescription) {
+        this.hikeId = hikeId;
         this.hikeName = hikeName;
         this.hikeLocation = hikeLocation;
         this.hikeDate = hikeDate;
@@ -24,12 +24,12 @@ public class HikeModel {
         this.hikeDescription = hikeDescription;
     }
 
-    public int getId() {
-        return id;
+    public int getHikeId() {
+        return hikeId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setHikeId(int hikeId) {
+        this.hikeId = hikeId;
     }
 
     public String getHikeName() {
