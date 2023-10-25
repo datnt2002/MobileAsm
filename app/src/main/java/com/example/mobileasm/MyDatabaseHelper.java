@@ -1,8 +1,10 @@
 package com.example.mobileasm;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -42,5 +44,29 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+
+    public boolean addHike(HikeModel hikeModel){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_HIKE_NAME, hikeModel.getHikeName());
+        cv.put(COLUMN_HIKE_LOCATION, hikeModel.getHikeLocation());
+        cv.put(COLUMN_HIKE_DATE, hikeModel.getHikeDate());
+        cv.put(COLUMN_AVAILABLE, hikeModel.isParkingAvailable());
+        cv.put(COLUMN_HIKE_LENGTH, hikeModel.getHikeLength());
+        cv.put(COLUMN_HIKE_LEVEL, hikeModel.getHikeLevel());
+        cv.put(COLUMN_HIKE_ESTIMATE, hikeModel.getHikeEstimate());
+        cv.put(COLUMN_HIKE_DESCRIPTION, hikeModel.getHikeDescription());
+
+        long result = db.insert(TABLE_NAME, null, cv);
+        if (result == -1){
+            Toast.makeText(context, "Add Failed", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            Toast.makeText(context, "Add Successfully", Toast.LENGTH_SHORT).show();
+            return true;
+        }
     }
 }

@@ -38,9 +38,15 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 boolean isValidated = validateInput();
                 if (isValidated){
-                    Toast.makeText(AddActivity.this, "ok", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(AddActivity.this, "not ok", Toast.LENGTH_SHORT).show();
+                    HikeModel newHike = new HikeModel(-1, hikeNameInput.getText().toString(), hikeLocationInput.getText().toString(), hikeDateInput.getText().toString(), parkingAvailableCheckbox.isChecked() ,Integer.parseInt(hikeLengthInput.getText().toString()), Integer.parseInt(hikeLevelInput.getText().toString()), Integer.parseInt(hikeEstimateInput.getText().toString()), hikeDescriptionInput.getText().toString());
+
+                    MyDatabaseHelper db = new MyDatabaseHelper(AddActivity.this);
+                    boolean isSuccess = db.addHike(newHike);
+                    if (isSuccess){
+                        Toast.makeText(AddActivity.this, "ok", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(AddActivity.this, "not ok", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -82,13 +88,6 @@ public class AddActivity extends AppCompatActivity {
         // Validate hike estimate
         if (TextUtils.isEmpty(hikeEstimateInput.getText().toString())) {
             hikeEstimateInput.setError("Please enter hike estimate");
-            return false;
-        }
-
-        // Check if parking checkbox is not selected
-        if (!parkingAvailableCheckbox.isChecked()) {
-            // You can show an error message here if parking is required for the hike.
-            Toast.makeText(AddActivity.this, "Please check available of parking", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
