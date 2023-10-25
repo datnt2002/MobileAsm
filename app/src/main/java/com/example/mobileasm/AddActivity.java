@@ -1,20 +1,27 @@
 package com.example.mobileasm;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
+
 public class AddActivity extends AppCompatActivity {
 
-    EditText hikeNameInput, hikeLocationInput, hikeDateInput, hikeLengthInput, hikeLevelInput, hikeEstimateInput, hikeDescriptionInput;
+    TextView hikeDateInput;
+    EditText hikeNameInput, hikeLocationInput, hikeLengthInput, hikeLevelInput, hikeEstimateInput, hikeDescriptionInput;
     CheckBox parkingAvailableCheckbox;
-    Button submitAddNewHikeBtn;
+    Button submitAddNewHikeBtn, chooseDateBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,14 @@ public class AddActivity extends AppCompatActivity {
 
         parkingAvailableCheckbox = findViewById(R.id.parking_available_checkbox);
 
+        chooseDateBtn = findViewById(R.id.btn_choose_date);
+        chooseDateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog();
+            }
+        });
+
         submitAddNewHikeBtn = findViewById(R.id.btn_submit_add_new_hike);
         submitAddNewHikeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,13 +58,36 @@ public class AddActivity extends AppCompatActivity {
                     MyDatabaseHelper db = new MyDatabaseHelper(AddActivity.this);
                     boolean isSuccess = db.addHike(newHike);
                     if (isSuccess){
-                        Toast.makeText(AddActivity.this, "ok", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(AddActivity.this, "not ok", Toast.LENGTH_SHORT).show();
+                        hikeNameInput.setText("");
+                        hikeLocationInput.setText("");
+                        hikeLengthInput.setText("");
+                        hikeLevelInput.setText("");
+                        hikeDateInput.setText("00/00/0000");
+                        hikeDescriptionInput.setText("");
+                        hikeEstimateInput.setText("");
+                        parkingAvailableCheckbox.setChecked(false);
                     }
                 }
             }
         });
+    }
+
+    private void datePickerDialog(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDateSet(DatePicker datePicker, int y, int m, int d) {
+                // Handle the selected date
+                hikeDateInput.setText(d + "/" + m + "/" + y);
+            }
+        }, year, month, day);
+
+        dialog.show();
     }
 
     private boolean validateInput(){

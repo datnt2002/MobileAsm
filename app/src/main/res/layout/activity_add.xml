@@ -97,14 +97,23 @@
                 android:layout_marginEnd="10dp"
                 android:gravity="center_vertical|start"
                 />
-            <EditText
+            <TextView
                 android:id="@+id/hike_date_input"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="48dp"
                 android:ems="10"
-                android:hint="@string/HikeDate"
-                android:inputType="date"
+                android:hint="00/00/0000"
+                android:textSize="16sp"
+                android:gravity="center_vertical|start"
+                android:layout_marginRight="5dp"
                 />
+
+            <Button
+                android:id="@+id/btn_choose_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Date" />
         </LinearLayout>
 
         <LinearLayout
