@@ -8,42 +8,100 @@
 
        <LinearLayout
            android:layout_width="match_parent"
-           android:layout_height="wrap_content">
+           android:layout_height="wrap_content"
+           android:padding="12dp">
            <TextView
-               android:id="@+id/id_tv"
+               android:id="@+id/id_in_list_card"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="1"
                android:textSize="40sp"
                android:textStyle="bold"
+               android:layout_marginRight="10dp"
             />
 
            <LinearLayout
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
+               android:layout_width="190dp"
+               android:layout_height="match_parent"
                android:orientation="vertical"
+               android:layout_marginRight="10dp"
+               android:gravity="center_vertical|start"
                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/hike_name_label"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="Name: "
+                        android:paddingRight="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/hike_name_in_list_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        />
+                </LinearLayout>
 
-               <TextView
-                   android:id="@+id/name_tv"
+               <LinearLayout
                    android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Name"
-                   />
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/hike_location_label"
+                       android:layout_width="60dp"
+                       android:layout_height="wrap_content"
+                       android:text="Location: "
+                       />
+                   <TextView
+                       android:id="@+id/hike_location_in_list_card"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Location"
+                       />
+               </LinearLayout>
 
-               <TextView
-                   android:id="@+id/age_tv"
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               android:gravity="center_vertical|start"
+               >
+               <LinearLayout
                    android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="DOB"
-                   />
-
-               <TextView
-                   android:id="@+id/email_tv"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/hike_length_label"
+                       android:layout_width="50dp"
+                       android:layout_height="wrap_content"
+                       android:text="Length: "
+                       />
+                   <TextView
+                       android:id="@+id/hike_length_in_list_card"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Length"
+                       />
+               </LinearLayout>
+               <LinearLayout
                    android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Email"
-                />
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/hike_date_label"
+                       android:layout_width="50dp"
+                       android:layout_height="wrap_content"
+                       android:text="Date: "
+                       android:paddingRight="5dp"
+                       />
+                   <TextView
+                       android:id="@+id/hike_date_in_list_card"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Date"
+                       />
+               </LinearLayout>
            </LinearLayout>
        </LinearLayout>
 
