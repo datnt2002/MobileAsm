@@ -157,14 +157,12 @@ public class UpdateActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(hikeLengthEditText.getText().toString())) {
             hikeLengthEditText.setError("Please enter hike length");
             return false;
-
         }
 
         // Validate hike level
         if (TextUtils.isEmpty(hikeLevelEditText.getText().toString())) {
             hikeLevelEditText.setError("Please enter hike level");
             return false;
-
         }
 
         // Validate hike estimate

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -47,13 +48,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.hikeLocationTextView.setText(hike.getHikeLocation());
         holder.hikeLengthTextView.setText(String.valueOf(hike.getHikeLength()));
         holder.hikeDateTextView.setText(String.valueOf(hike.getHikeDate()));
-
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateActivity.class);
                 intent.putExtra("position", position);
                 activity.startActivityForResult(intent, 1);
+            }
+        });
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(context, UpdateActivity.class);
+//                intent.putExtra("position", position);
+//                activity.startActivityForResult(intent, 1);
             }
         });
     }
@@ -67,6 +75,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         TextView idTextView, hikeNameTextView, hikeLocationTextView, hikeLengthTextView, hikeDateTextView;
         RelativeLayout mainLayout;
+        ImageView editBtn, deleteBtn;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -76,6 +85,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             hikeLengthTextView = itemView.findViewById(R.id.hike_length_in_list_card);
             hikeDateTextView = itemView.findViewById(R.id.hike_date_in_list_card);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            editBtn = itemView.findViewById(R.id.edit_btn);
+
         }
     }
 }

@@ -7,23 +7,14 @@
         android:icon="@drawable/ic_home"/>
 
     <item
-        android:id="@+id/search"
-        android:title="Search"
-        android:icon="@drawable/ic_search"/>
-
-    <item
         android:id="@+id/fab"
         android:title=""
         android:enabled="false"/>
 
     <item
-        android:id="@+id/subscriptions"
-        android:title="Subscriptions"
-        android:icon="@drawable/ic_home"/>
+        android:id="@+id/search"
+        android:title="Search"
+        android:icon="@drawable/ic_search"/>
 
-    <item
-        android:id="@+id/library"
-        android:title="Library"
-        android:icon="@drawable/ic_home"/>
 
 </menu>
