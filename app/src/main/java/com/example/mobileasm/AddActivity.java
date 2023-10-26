@@ -119,12 +119,7 @@ public class AddActivity extends AppCompatActivity {
             return false;
         }
 
-        // Validate hike date
-        if (TextUtils.isEmpty(hikeDateInput.getText().toString())) {
-            hikeDateInput.setError("Please enter hike date");
-            return false;
 
-        }
 
         // Validate hike length
         if (TextUtils.isEmpty(hikeLengthInput.getText().toString())) {

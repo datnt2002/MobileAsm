@@ -1,6 +1,7 @@
 package com.example.mobileasm;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,9 +20,11 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<HikeModel> hikeLists;
+    Activity activity;
 
     int position;
-    public CustomAdapter(Context context, ArrayList<HikeModel> hikeLists) {
+    public CustomAdapter(Activity activity, Context context, ArrayList<HikeModel> hikeLists) {
+        this.activity = activity;
         this.context = context;
         this.hikeLists = hikeLists;
     }
@@ -50,7 +53,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateActivity.class);
                 intent.putExtra("position", position);
-                context.startActivity(intent);
+                activity.startActivityForResult(intent, 1);
             }
         });
     }

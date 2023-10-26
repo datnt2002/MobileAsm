@@ -108,4 +108,27 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_NAME, null,"HIKE_ID = ?", new String[]{String.valueOf(position)}, null, null, null);
         return cursor;
     }
+
+    public void updateData(int position, HikeModel hikeModel){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        position = position + 1;
+
+        cv.put(COLUMN_HIKE_NAME, hikeModel.getHikeName());
+        cv.put(COLUMN_HIKE_LOCATION, hikeModel.getHikeLocation());
+        cv.put(COLUMN_HIKE_DATE, hikeModel.getHikeDate());
+        cv.put(COLUMN_AVAILABLE, hikeModel.isParkingAvailable());
+        cv.put(COLUMN_HIKE_LENGTH, hikeModel.getHikeLength());
+        cv.put(COLUMN_HIKE_LEVEL, hikeModel.getHikeLevel());
+        cv.put(COLUMN_HIKE_ESTIMATE, hikeModel.getHikeEstimate());
+        cv.put(COLUMN_HIKE_DESCRIPTION, hikeModel.getHikeDescription());
+
+        long result = db.update(TABLE_NAME, cv, "HIKE_ID = ?", new String[]{String.valueOf(position)});
+
+        if (result == -1){
+            Toast.makeText(context, "Update Failed", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

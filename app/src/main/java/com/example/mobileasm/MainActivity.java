@@ -1,6 +1,7 @@
 package com.example.mobileasm;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -61,8 +62,16 @@ public class MainActivity extends AppCompatActivity {
         db = new MyDatabaseHelper(MainActivity.this);
         hikeList = db.getAllHike();
 
-        customAdapter = new CustomAdapter(MainActivity.this, hikeList);
+        customAdapter = new CustomAdapter(MainActivity.this,this, hikeList);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            recreate();
+        }
     }
 }
