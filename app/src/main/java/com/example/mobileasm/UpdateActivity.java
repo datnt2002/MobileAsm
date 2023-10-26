@@ -1,5 +1,6 @@
 package com.example.mobileasm;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -9,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,13 +19,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
+
 import java.util.Calendar;
 
 public class UpdateActivity extends AppCompatActivity {
 
     EditText hikeNameEditText, hikeLocationEditText, hikeLengthEditText,  hikeLevelEditText, hikeEstimateEditText, hikeDescriptionEditText;
     CheckBox availableEditCheck;
-
+    BottomNavigationView nav;
+    FloatingActionButton addHikeBtnFloatingMenu;
     TextView hikeDateEditText;
     Button updateBtn, chooseDateBtn;
     int position;
@@ -31,6 +38,26 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
+
+        nav = findViewById(R.id.bottomNavigationView);
+        nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                NavigatorHandler navHandle = new NavigatorHandler();
+                navHandle.navigateTo(itemId, UpdateActivity.this);
+                return true;
+            }
+        });
+
+        addHikeBtnFloatingMenu = findViewById(R.id.add_hike_btn_floating);
+        addHikeBtnFloatingMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateActivity.this, AddActivity.class);
+                startActivity(intent);
+            }
+        });
 
         hikeNameEditText = findViewById(R.id.hike_name_edit_input);
         hikeLocationEditText = findViewById(R.id.hike_location_edit_input);

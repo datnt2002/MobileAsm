@@ -27,7 +27,6 @@ public class AddActivity extends AppCompatActivity {
     EditText hikeNameInput, hikeLocationInput, hikeLengthInput, hikeLevelInput, hikeEstimateInput, hikeDescriptionInput;
     CheckBox parkingAvailableCheckbox;
     Button submitAddNewHikeBtn, chooseDateBtn;
-
     BottomNavigationView nav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
