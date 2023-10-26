@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -99,5 +100,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnArray;
+    }
+
+    public Cursor getData(int position) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        position = position + 1;
+        Cursor cursor = db.query(TABLE_NAME, null,"HIKE_ID = ?", new String[]{String.valueOf(position)}, null, null, null);
+        return cursor;
     }
 }

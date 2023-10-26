@@ -1,9 +1,14 @@
 package com.example.mobileasm;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +20,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     private ArrayList<HikeModel> hikeLists;
 
+    int position;
     public CustomAdapter(Context context, ArrayList<HikeModel> hikeLists) {
         this.context = context;
         this.hikeLists = hikeLists;
@@ -29,7 +35,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        this.position = position;
         HikeModel hike = hikeLists.get(position);
 
         holder.idTextView.setText(String.valueOf(hike.getHikeId()));
@@ -38,6 +45,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.hikeLengthTextView.setText(String.valueOf(hike.getHikeLength()));
         holder.hikeDateTextView.setText(String.valueOf(hike.getHikeDate()));
 
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("position", position);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -48,6 +63,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView idTextView, hikeNameTextView, hikeLocationTextView, hikeLengthTextView, hikeDateTextView;
+        RelativeLayout mainLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -56,6 +72,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             hikeLocationTextView = itemView.findViewById(R.id.hike_location_in_list_card);
             hikeLengthTextView = itemView.findViewById(R.id.hike_length_in_list_card);
             hikeDateTextView = itemView.findViewById(R.id.hike_date_in_list_card);
+            mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
 }
