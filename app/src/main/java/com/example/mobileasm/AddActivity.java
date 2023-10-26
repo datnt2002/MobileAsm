@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,7 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Calendar;
 
@@ -23,11 +28,23 @@ public class AddActivity extends AppCompatActivity {
     CheckBox parkingAvailableCheckbox;
     Button submitAddNewHikeBtn, chooseDateBtn;
 
+    BottomNavigationView nav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        nav = findViewById(R.id.bottomNavigationView);
+
+        nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                NavigatorHandler navHandle = new NavigatorHandler();
+                navHandle.navigateTo(itemId, AddActivity.this);
+                return true;
+            }
+        });
 
         hikeNameInput = findViewById(R.id.hike_name_input);
         hikeLocationInput = findViewById(R.id.hike_location_input);
