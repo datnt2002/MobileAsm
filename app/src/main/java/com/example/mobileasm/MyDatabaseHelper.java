@@ -2,11 +2,14 @@ package com.example.mobileasm;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MHike.db";
@@ -68,5 +71,33 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Add Successfully", Toast.LENGTH_SHORT).show();
             return true;
         }
+    }
+
+    public ArrayList<HikeModel> getAllHike(){
+        ArrayList<HikeModel> returnArray = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                int id = cursor.getInt(0);
+                String hikeName = cursor.getString(1);
+                String hikeLocation = cursor.getString(2);
+                String hikeDate = cursor.getString(3);
+                boolean available = cursor.getInt(4) == 1;
+                int hikeLength = cursor.getInt(5);
+                int hikeLevel = cursor.getInt(6);
+                int hikeEstimate = cursor.getInt(7);
+                String hikeDescription = cursor.getString(8);
+
+                HikeModel hikeModel = new HikeModel(id, hikeName, hikeLocation, hikeDate, available, hikeLength, hikeLevel, hikeEstimate, hikeDescription);
+                returnArray.add(hikeModel);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return returnArray;
     }
 }
