@@ -7,8 +7,8 @@
         android:icon="@drawable/ic_home"/>
 
     <item
-        android:id="@+id/shorts"
-        android:title="Shorts"
+        android:id="@+id/search"
+        android:title="Search"
         android:icon="@drawable/ic_home"/>
 
     <item

@@ -9,7 +9,7 @@
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:padding="12dp">
+           android:padding="20dp">
            <TextView
                android:id="@+id/id_in_list_card"
                android:layout_width="wrap_content"

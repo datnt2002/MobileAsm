@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,36 +20,29 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
     FloatingActionButton addHikeBtnFloatingMenu;
-
     BottomNavigationView nav;
-
-
+    RecyclerView recyclerView;
+    MyDatabaseHelper db;
+    ArrayList<HikeModel> hikeList;
+    CustomAdapter customAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         nav = findViewById(R.id.bottomNavigationView);
+
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                Intent intent;
-                if (itemId == R.id.home) {
-                    intent = new Intent(MainActivity.this, SearchActivity.class);
-                    startActivity(intent);
-//                } else if (itemId == R.id.shorts) {
-//                    replaceFragment(new ShortFragment());
-//                } else if (itemId == R.id.subscriptions) {
-//                    replaceFragment(new SubscriptionFragment());
-//                } else if (itemId == R.id.library) {
-//                    replaceFragment(new LibraryFragment());
-//                }
-                }
+                NavigatorHandler navHandle = new NavigatorHandler();
+                navHandle.navigateTo(itemId, MainActivity.this);
                 return true;
             }
         });
@@ -61,5 +56,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        recyclerView = findViewById(R.id.recyclerView);
+        db = new MyDatabaseHelper(MainActivity.this);
+        hikeList = db.getAllHike();
+
+        customAdapter = new CustomAdapter(MainActivity.this, hikeList);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
 }
