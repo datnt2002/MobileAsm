@@ -80,10 +80,15 @@ public class UpdateActivity extends AppCompatActivity {
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HikeModel hikeUpdate = new HikeModel(position, hikeNameEditText.getText().toString(), hikeLocationEditText.getText().toString(), hikeDateEditText.getText().toString(), availableEditCheck.isChecked(),Integer.parseInt(hikeLengthEditText.getText().toString()), Integer.parseInt(hikeLevelEditText.getText().toString()), Integer.parseInt(hikeEstimateEditText.getText().toString()), hikeDescriptionEditText.getText().toString());
+                boolean isValidated = validateInput();
+                if (isValidated){
+                    HikeModel hikeUpdate = new HikeModel(position, hikeNameEditText.getText().toString(), hikeLocationEditText.getText().toString(), hikeDateEditText.getText().toString(), availableEditCheck.isChecked(),Integer.parseInt(hikeLengthEditText.getText().toString()), Integer.parseInt(hikeLevelEditText.getText().toString()), Integer.parseInt(hikeEstimateEditText.getText().toString()), hikeDescriptionEditText.getText().toString());
+                    MyDatabaseHelper myDb = new MyDatabaseHelper(UpdateActivity.this);
+                    myDb.updateData(position, hikeUpdate);
+                }else{
+                    Toast.makeText(UpdateActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                }
 
-                MyDatabaseHelper myDb = new MyDatabaseHelper(UpdateActivity.this);
-                myDb.updateData(position, hikeUpdate);
             }
         });
 

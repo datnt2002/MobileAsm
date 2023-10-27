@@ -59,9 +59,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(context, UpdateActivity.class);
-//                intent.putExtra("position", position);
-//                activity.startActivityForResult(intent, 1);
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("position", position);
+                activity.startActivityForResult(intent, 1);
             }
         });
     }
