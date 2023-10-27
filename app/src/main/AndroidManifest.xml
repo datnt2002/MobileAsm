@@ -13,16 +13,19 @@
         android:theme="@style/Theme.MobileAsm"
         tools:targetApi="31">
         <activity
-            android:name=".DetailActivity"
+            android:name=".obs.AddObsActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdateActivity"
+            android:name=".hikeActivity.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".hikeActivity.UpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".AddActivity"
+            android:name=".hikeActivity.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hikeActivity.AddActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

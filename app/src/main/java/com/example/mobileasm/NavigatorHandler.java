@@ -2,9 +2,8 @@ package com.example.mobileasm;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.MenuItem;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.mobileasm.hikeActivity.SearchActivity;
 
 public class NavigatorHandler {
     public void navigateTo(int itemId, Activity currentActivity) {

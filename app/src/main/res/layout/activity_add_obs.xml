@@ -8,7 +8,6 @@
     >
 
     <LinearLayout
-        android:id="@+id/detail_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -20,7 +19,7 @@
             android:id="@+id/detailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/DetailOfHikes"
+            android:text="Create Observation"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -35,102 +34,150 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_name_title_input"
+                android:id="@+id/obs_name_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:text="@string/HikeName"
+                android:text="Observation"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center_vertical|start"
                 />
-            <TextView
-                android:id="@+id/hike_name_detail"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="@string/HikeName"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center_vertical|start"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:layout_marginBottom="5dp"
-            >
-            <TextView
-                android:id="@+id/hike_location_title_input"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:text="@string/HikeLocation"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center_vertical|start"
-                />
-            <TextView
-                android:id="@+id/hike_location_detail"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="@string/HikeLocation"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center_vertical|start"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:layout_marginBottom="5dp"
-            >
-            <TextView
-                android:id="@+id/hike_date_title_input"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:text="@string/HikeDate"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center_vertical|start"
-                />
-            <TextView
-                android:id="@+id/hike_date_detail"
+            <EditText
+                android:id="@+id/obs_name_input"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:ems="10"
-                android:text="00/00/0000"
+                android:hint="Observation"
+                android:inputType="text"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:id="@+id/obs_date_title_input"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Observation Date"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <TextView
+                android:id="@+id/obs_date_input"
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="00/00/0000"
                 android:textSize="16sp"
                 android:gravity="center_vertical|start"
+                android:layout_marginRight="5dp"
                 />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:layout_marginBottom="5dp"
-            >
-            <TextView
-                android:id="@+id/hike_parking_title_input"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:text="Parking Available"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center_vertical|start"
-                />
-            <CheckBox
-                android:id="@+id/parking_available_detail"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btn_choose_obs_date"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/ParkingAvailable"
+                android:layout_weight="1"
+                android:text="Choose Date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:id="@+id/obs_time_title_input"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Time"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <TextView
+                android:id="@+id/obs_time_input"
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="00:00:00"
+                android:textSize="16sp"
+                android:gravity="center_vertical|start"
+                android:layout_marginRight="5dp"
+                />
+
+            <Button
+                android:id="@+id/btn_choose_obs_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Time" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:id="@+id/obs_sighting_title_input"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Sighting"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <EditText
+                android:id="@+id/obs_sighting_input"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="Sighting animals, vegetables"
+                android:inputType="text"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:id="@+id/obs_weather_title_input"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Weather"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <EditText
+                android:id="@+id/obs_weather_input"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="Weather Condition"
+                android:inputType="text"
+                android:textSize="15sp"
                 />
         </LinearLayout>
 
@@ -142,124 +189,44 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_length_title_input"
+                android:id="@+id/obs_comment_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:text="@string/LengthOfHike"
+                android:text="Comment"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center_vertical|start"
                 />
-            <TextView
-                android:id="@+id/hike_length_detail"
+            <EditText
+                android:id="@+id/obs_comment_input"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="@string/LengthOfHike"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center_vertical|start"/>
+                android:ems="10"
+                android:hint="Comment"
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
             >
-            <TextView
-                android:id="@+id/hike_level_title_input"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:text="@string/HikeLevel"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center_vertical|start"
-                />
-            <TextView
-                android:id="@+id/hike_level_detail"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="@string/HikeLevel"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center_vertical|start"/>
+            <ImageView
+                android:id="@+id/obs_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                tools:srcCompat="@drawable/ic_image"
+               />
         </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:layout_marginBottom="5dp"
-            >
-            <TextView
-                android:id="@+id/hike_estimate_title_input"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:text="@string/HikeEstimate"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center_vertical|start"
-                />
-            <TextView
-                android:id="@+id/hike_estimate_detail"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="@string/HikeEstimate"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center_vertical|start"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:layout_marginBottom="5dp"
-            >
-            <TextView
-                android:id="@+id/hike_description_title_input"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:text="@string/HikeDescription"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center_vertical|start"
-                />
-            <TextView
-                android:id="@+id/hike_description_detail"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="@string/HikeDescription"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center_vertical|start"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/detail_layout"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        >
         <Button
-            android:id="@+id/btn_add_observation"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_submit_add_new_obs"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Observation"
-            />
+            android:layout_marginTop="20dp"
+            android:text="Submit" />
     </LinearLayout>
-
-    <include layout="@layout/bottom_app_bar" />
-
 
 
 </RelativeLayout>

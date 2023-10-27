@@ -1,5 +1,7 @@
 package com.example.mobileasm.models;
 
+import java.util.ArrayList;
+
 public class HikeModel {
     private int hikeId;
     private String hikeName;
@@ -10,7 +12,7 @@ public class HikeModel {
     private int hikeLevel;
     private int hikeEstimate;
     private String hikeDescription;
-
+    private ArrayList<ObservationsModel> observationsList;
 
     public HikeModel(int hikeId, String hikeName, String hikeLocation, String hikeDate, boolean parkingAvailable, int hikeLength, int hikeLevel, int hikeEstimate, String hikeDescription) {
         this.hikeId = hikeId;
@@ -94,5 +96,13 @@ public class HikeModel {
 
     public void setHikeEstimate(int hikeEstimate) {
         this.hikeEstimate = hikeEstimate;
+    }
+
+    public ArrayList<ObservationsModel> getObservationsList() {
+        return observationsList;
+    }
+
+    public void setObservationsList(ArrayList<ObservationsModel> observationsList) {
+        this.observationsList = observationsList;
     }
 }

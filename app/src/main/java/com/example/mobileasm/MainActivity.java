@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.mobileasm.hikeActivity.AddActivity;
+import com.example.mobileasm.hikeActivity.CustomAdapter;
 import com.example.mobileasm.models.HikeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

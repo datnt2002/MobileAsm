@@ -1,4 +1,4 @@
-package com.example.mobileasm;
+package com.example.mobileasm.hikeActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobileasm.MyDatabaseHelper;
+import com.example.mobileasm.NavigatorHandler;
+import com.example.mobileasm.R;
 import com.example.mobileasm.models.HikeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

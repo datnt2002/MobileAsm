@@ -1,4 +1,4 @@
-package com.example.mobileasm;
+package com.example.mobileasm.hikeActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -15,6 +15,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobileasm.MyDatabaseHelper;
+import com.example.mobileasm.NavigatorHandler;
+import com.example.mobileasm.R;
 import com.example.mobileasm.models.HikeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;

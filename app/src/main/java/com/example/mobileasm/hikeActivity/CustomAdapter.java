@@ -1,4 +1,4 @@
-package com.example.mobileasm;
+package com.example.mobileasm.hikeActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobileasm.MyDatabaseHelper;
+import com.example.mobileasm.R;
 import com.example.mobileasm.models.HikeModel;
 
 import java.util.ArrayList;
