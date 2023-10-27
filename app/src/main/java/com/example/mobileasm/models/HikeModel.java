@@ -1,4 +1,4 @@
-package com.example.mobileasm;
+package com.example.mobileasm.models;
 
 public class HikeModel {
     private int hikeId;
