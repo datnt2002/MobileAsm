@@ -44,7 +44,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         HikeModel hike = hikeLists.get(position);
 
-
         holder.idTextView.setText(String.valueOf(hike.getHikeId()));
         holder.hikeNameTextView.setText(hike.getHikeName());
         holder.hikeLocationTextView.setText(hike.getHikeLocation());
