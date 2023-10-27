@@ -5,6 +5,8 @@ public class ObservationsModel {
     private String obsName;
     private String obsDate;
     private String obsComment;
+    private String obsSighting;
+    private String obsWeather;
     private byte[] obsImage;
 
     public ObservationsModel(int obsId, String obsName, String obsDate, String obsComment, byte[] obsImage) {
@@ -12,6 +14,16 @@ public class ObservationsModel {
         this.obsName = obsName;
         this.obsDate = obsDate;
         this.obsComment = obsComment;
+        this.obsImage = obsImage;
+    }
+
+    public ObservationsModel(int obsId, String obsName, String obsDate, String obsComment, String obsSighting, String obsWeather, byte[] obsImage) {
+        this.obsId = obsId;
+        this.obsName = obsName;
+        this.obsDate = obsDate;
+        this.obsComment = obsComment;
+        this.obsSighting = obsSighting;
+        this.obsWeather = obsWeather;
         this.obsImage = obsImage;
     }
 
@@ -42,6 +54,22 @@ public class ObservationsModel {
         this.obsDate = obsDate;
     }
 
+    public String getObsSighting() {
+        return obsSighting;
+    }
+
+    public void setObsSighting(String obsSighting) {
+        this.obsSighting = obsSighting;
+    }
+
+    public String getObsWeather() {
+        return obsWeather;
+    }
+
+    public void setObsWeather(String obsWeather) {
+        this.obsWeather = obsWeather;
+    }
+
     public String getObsComment() {
         return obsComment;
     }
@@ -57,4 +85,5 @@ public class ObservationsModel {
     public void setObsImage(byte[] obsImage) {
         this.obsImage = obsImage;
     }
+
 }
