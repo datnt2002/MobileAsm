@@ -33,7 +33,7 @@ public class UpdateActivity extends AppCompatActivity {
     FloatingActionButton addHikeBtnFloatingMenu;
     TextView hikeDateEditText;
     Button updateBtn, chooseDateBtn;
-    int position;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,9 +82,9 @@ public class UpdateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 boolean isValidated = validateInput();
                 if (isValidated){
-                    HikeModel hikeUpdate = new HikeModel(position, hikeNameEditText.getText().toString(), hikeLocationEditText.getText().toString(), hikeDateEditText.getText().toString(), availableEditCheck.isChecked(),Integer.parseInt(hikeLengthEditText.getText().toString()), Integer.parseInt(hikeLevelEditText.getText().toString()), Integer.parseInt(hikeEstimateEditText.getText().toString()), hikeDescriptionEditText.getText().toString());
+                    HikeModel hikeUpdate = new HikeModel(id, hikeNameEditText.getText().toString(), hikeLocationEditText.getText().toString(), hikeDateEditText.getText().toString(), availableEditCheck.isChecked(),Integer.parseInt(hikeLengthEditText.getText().toString()), Integer.parseInt(hikeLevelEditText.getText().toString()), Integer.parseInt(hikeEstimateEditText.getText().toString()), hikeDescriptionEditText.getText().toString());
                     MyDatabaseHelper myDb = new MyDatabaseHelper(UpdateActivity.this);
-                    myDb.updateData(position, hikeUpdate);
+                    myDb.updateData(id, hikeUpdate);
                 }else{
                     Toast.makeText(UpdateActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
                 }
@@ -98,14 +98,14 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     void getIntentData(){
-        if (getIntent().hasExtra("position")){
-            position = getIntent().getIntExtra("position", -1);
+        if (getIntent().hasExtra("id")){
+            id = getIntent().getIntExtra("id", -1);
             MyDatabaseHelper db = new MyDatabaseHelper(UpdateActivity.this);
-            Cursor result = db.getData(position);
+            Cursor result = db.getData(id);
             if (result.getCount() == 0) {
                 Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();
             }else{
-                if (result.moveToNext()){
+                if (result.moveToFirst()){
                     String hikeName = result.getString(1);
                     String location = result.getString(2);
                     String date = result.getString(3);

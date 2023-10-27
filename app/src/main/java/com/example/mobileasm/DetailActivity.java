@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -22,7 +23,7 @@ public class DetailActivity extends AppCompatActivity {
     CheckBox parkingAvailable;
     BottomNavigationView nav;
     FloatingActionButton addHikeBtnFloatingMenu;
-    int position;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +63,10 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     void getIntentData(){
-        if (getIntent().hasExtra("position")){
-            position = getIntent().getIntExtra("position", -1);
+        if (getIntent().hasExtra("id")){
+            id = getIntent().getIntExtra("id", -1);
             MyDatabaseHelper db = new MyDatabaseHelper(DetailActivity.this);
-            Cursor result = db.getData(position);
+            Cursor result = db.getData(id);
             if (result.getCount() == 0) {
                 Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();
             }else{

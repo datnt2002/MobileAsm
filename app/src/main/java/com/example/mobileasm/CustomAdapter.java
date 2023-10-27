@@ -2,14 +2,16 @@ package com.example.mobileasm;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,8 +24,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     private ArrayList<HikeModel> hikeLists;
     Activity activity;
-
-    int position;
     public CustomAdapter(Activity activity, Context context, ArrayList<HikeModel> hikeLists) {
         this.activity = activity;
         this.context = context;
@@ -40,8 +40,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        this.position = position;
         HikeModel hike = hikeLists.get(position);
+
 
         holder.idTextView.setText(String.valueOf(hike.getHikeId()));
         holder.hikeNameTextView.setText(hike.getHikeName());
@@ -52,7 +52,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("position", position);
+                int id = hike.getHikeId();
+                intent.putExtra("id", id);
                 activity.startActivityForResult(intent, 1);
             }
         });
@@ -60,8 +61,39 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("position", position);
+                int id = hike.getHikeId();
+                intent.putExtra("id", id);
                 activity.startActivityForResult(intent, 1);
+            }
+        });
+
+        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = hike.getHikeId();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Delete this hike?");
+                builder.setMessage("Are you sure to delete this hike");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int positionToDelete = holder.getAdapterPosition(); // Get the current position within the adapter
+                        if (positionToDelete != RecyclerView.NO_POSITION) {
+                            int idToDelete = hikeLists.get(positionToDelete).getHikeId();
+                            MyDatabaseHelper myDb = new MyDatabaseHelper(context);
+                            myDb.deleteData(idToDelete);
+                            hikeLists.remove(positionToDelete);
+                            notifyDataSetChanged();
+                        }
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.create().show();
             }
         });
     }
@@ -86,7 +118,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             hikeDateTextView = itemView.findViewById(R.id.hike_date_in_list_card);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             editBtn = itemView.findViewById(R.id.edit_btn);
-
+            deleteBtn = itemView.findViewById(R.id.delete_btn);
         }
     }
 }

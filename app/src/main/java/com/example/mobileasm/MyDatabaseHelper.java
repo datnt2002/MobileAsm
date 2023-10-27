@@ -102,17 +102,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return returnArray;
     }
 
-    public Cursor getData(int position) {
+    public Cursor getData(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        position = position + 1;
-        Cursor cursor = db.query(TABLE_NAME, null,"HIKE_ID = ?", new String[]{String.valueOf(position)}, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME, null,"HIKE_ID = ?", new String[]{String.valueOf(id)}, null, null, null);
         return cursor;
     }
 
-    public void updateData(int position, HikeModel hikeModel){
+    public void updateData(int id, HikeModel hikeModel){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        position = position + 1;
 
         cv.put(COLUMN_HIKE_NAME, hikeModel.getHikeName());
         cv.put(COLUMN_HIKE_LOCATION, hikeModel.getHikeLocation());
@@ -123,12 +121,23 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_HIKE_ESTIMATE, hikeModel.getHikeEstimate());
         cv.put(COLUMN_HIKE_DESCRIPTION, hikeModel.getHikeDescription());
 
-        long result = db.update(TABLE_NAME, cv, "HIKE_ID = ?", new String[]{String.valueOf(position)});
+        long result = db.update(TABLE_NAME, cv, "HIKE_ID = ?", new String[]{String.valueOf(id)});
 
         if (result == -1){
             Toast.makeText(context, "Update Failed", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    public void deleteData(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "HIKE_ID=?", new String[]{String.valueOf(id)});
+        if (result == -1){
+            Toast.makeText(context, "Delete Failed", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
         }
     }
 }
