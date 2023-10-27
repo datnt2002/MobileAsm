@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.mobileasm.models.HikeModel;
+import com.example.mobileasm.models.ObservationsModel;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_HIKE_ESTIMATE = "HIKE_ESTIMATE";
     public static final String COLUMN_HIKE_DESCRIPTION = "HIKE_DESCRIPTION";
 
+
+    public static final String OBS_TABLE_NAME = "HIKE_OBSERVATION";
+    public static final String COLUMN_OBS_ID = "OBS_ID";
+    public static final String COLUMN_OBS_NAME = "OBS_NAME";
+    public static final String COLUMN_OBS_DATE = "OBS_DATE";
+    public static final String COLUMN_OBS_TIME = "OBS_TIME";
+    public static final String COLUMN_OBS_SIGHTING = "OBS_SIGHTING";
+    public static final String COLUMN_OBS_WEATHER = "OBS_WEATHER";
+    public static final String COLUMN_OBS_COMMENT = "OBS_COMMENT";
+
+    public static final String COLUMN_OBS_IMAGE = "OBS_IMAGE";
     private Context context;
 
     public MyDatabaseHelper(@Nullable Context context) {
@@ -42,12 +54,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_HIKE_LENGTH + " INTEGER, " + COLUMN_HIKE_LEVEL + " INTEGER, "
                 + COLUMN_HIKE_ESTIMATE + " INTEGER, " + COLUMN_HIKE_DESCRIPTION + " TEXT)";
 
+
+        String createTableObservation = "CREATE TABLE " + OBS_TABLE_NAME
+                + " (" + COLUMN_OBS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_OBS_NAME + " TEXT, " + COLUMN_OBS_DATE + " TEXT, "
+                + COLUMN_OBS_TIME + " TEXT, " + COLUMN_OBS_SIGHTING + " TEXT, " +
+                COLUMN_OBS_WEATHER + " TEXT, " + COLUMN_OBS_IMAGE + " BLOB, "
+                + COLUMN_OBS_COMMENT + " TEXT, " + COLUMN_HIKE_ID + " INTEGER, " +
+                "FOREIGN KEY (" + COLUMN_HIKE_ID + ") REFERENCES " + TABLE_NAME + "(" + COLUMN_HIKE_ID + "))";;
         db.execSQL(createTableStatement);
+        db.execSQL(createTableObservation);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + OBS_TABLE_NAME);
         onCreate(db);
     }
 
@@ -133,7 +155,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
     public void deleteData(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "HIKE_ID=?", new String[]{String.valueOf(id)});
@@ -149,5 +170,29 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
         db.close();
+    }
+
+    //observation
+    public boolean addObservation(ObservationsModel obs, int hikeId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_OBS_NAME, obs.getObsName());
+        cv.put(COLUMN_OBS_DATE, obs.getObsDate());
+        cv.put(COLUMN_OBS_TIME, obs.getObsTime());
+        cv.put(COLUMN_OBS_SIGHTING, obs.getObsSighting());
+        cv.put(COLUMN_OBS_WEATHER, obs.getObsWeather());
+        cv.put(COLUMN_OBS_IMAGE, obs.getObsImage());
+        cv.put(COLUMN_OBS_COMMENT, obs.getObsComment());
+        cv.put(COLUMN_HIKE_ID, hikeId);
+
+        long result = db.insert(OBS_TABLE_NAME, null, cv);
+        if (result == -1){
+            Toast.makeText(context, "Add Obs Failed", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            Toast.makeText(context, "Add Obs Successfully", Toast.LENGTH_SHORT).show();
+            return true;
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.mobileasm.MyDatabaseHelper;
 import com.example.mobileasm.NavigatorHandler;
 import com.example.mobileasm.R;
+import com.example.mobileasm.obs.AddObsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -25,7 +27,9 @@ public class DetailActivity extends AppCompatActivity {
     CheckBox parkingAvailable;
     BottomNavigationView nav;
     FloatingActionButton addHikeBtnFloatingMenu;
+    Button addNewObsBtn;
     int id;
+    String hikeName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,17 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetailActivity.this, AddActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addNewObsBtn = findViewById(R.id.btn_add_observation);
+        addNewObsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, AddObsActivity.class);
+                intent.putExtra("hikeName", hikeName);
+                intent.putExtra("hikeId", id);
                 startActivity(intent);
             }
         });
@@ -73,7 +88,7 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();
             }else{
                 if (result.moveToNext()){
-                    String hikeName = result.getString(1);
+                    hikeName = result.getString(1);
                     String location = result.getString(2);
                     String date = result.getString(3);
                     boolean available = result.getInt(4) == 1;

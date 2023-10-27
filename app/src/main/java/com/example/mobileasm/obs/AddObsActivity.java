@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,15 +26,18 @@ public class AddObsActivity extends AppCompatActivity {
     BottomNavigationView nav;
     FloatingActionButton addHikeBtnFloatingMenu;
     EditText obsNameInput, obsSightingInput, obsWeatherInput, obsCommentInput;
-    TextView obsDateInput, obsTimeInput;
+    TextView obsDateInput, obsTimeInput, hikeNameTextview;
     Button btnChooseObsDate, btnChooseObsTime, btnSubmitAddObs;
-
     ImageView obsImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_obs);
 
+        int hikeId = getIntent().getIntExtra("hikeId", -1);
+        String hikeName = getIntent().getStringExtra("hikeName");
+        Log.d("add obs", " " + hikeId);
+        Log.d("add obs1", " " + hikeName);
 
         nav = findViewById(R.id.bottomNavigationView);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -54,6 +58,8 @@ public class AddObsActivity extends AppCompatActivity {
             }
         });
 
+        hikeNameTextview = findViewById(R.id.hike_name_in_add_obs);
+        hikeNameTextview.setText(hikeName);
 
         obsNameInput = findViewById(R.id.obs_name_input);
         obsSightingInput = findViewById(R.id.obs_sighting_input);
