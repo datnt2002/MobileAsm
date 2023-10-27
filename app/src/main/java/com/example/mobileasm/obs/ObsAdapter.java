@@ -26,7 +26,7 @@ public class ObsAdapter extends RecyclerView.Adapter<ObsAdapter.ObsViewHolder>{
     private ArrayList<ObservationsModel> obsLists;
     Activity activity;
 
-    public ObsAdapter(Context context, ArrayList<ObservationsModel> obsLists, Activity activity) {
+    public ObsAdapter( Activity activity, Context context, ArrayList<ObservationsModel> obsLists) {
         this.context = context;
         this.obsLists = obsLists;
         this.activity = activity;

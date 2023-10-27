@@ -195,4 +195,27 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    public ArrayList<ObservationsModel> getAllObsOfHike(int hikeId){
+        ArrayList<ObservationsModel> returnArray = new ArrayList<>();
+        String query = "SELECT * FROM " + OBS_TABLE_NAME + " WHERE " + COLUMN_HIKE_ID + " = ?";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(hikeId)});
+
+        if (cursor.moveToFirst()){
+            do {
+                int obsId = cursor.getInt(0);
+                String obsName = cursor.getString(1);
+                String obsDate = cursor.getString(2);
+                byte[] image = cursor.getBlob(6);
+
+                ObservationsModel obs = new ObservationsModel(obsId, obsName, obsDate, image);
+                returnArray.add(obs);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return returnArray;
+    }
 }

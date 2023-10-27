@@ -64,8 +64,6 @@ public class AddObsActivity extends AppCompatActivity {
 
         int hikeId = getIntent().getIntExtra("hikeId", -1);
         String hikeName = getIntent().getStringExtra("hikeName");
-        Log.d("add obs", " " + hikeId);
-        Log.d("add obs1", " " + hikeName);
 
         nav = findViewById(R.id.bottomNavigationView);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

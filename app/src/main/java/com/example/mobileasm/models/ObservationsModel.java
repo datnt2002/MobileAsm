@@ -10,12 +10,10 @@ public class ObservationsModel {
     private String obsWeather;
     private byte[] obsImage;
 
-    public ObservationsModel(int obsId, String obsName, String obsDate,String obsTime, String obsComment, byte[] obsImage) {
+    public ObservationsModel(int obsId, String obsName, String obsDate, byte[] obsImage) {
         this.obsId = obsId;
         this.obsName = obsName;
         this.obsDate = obsDate;
-        this.obsTime = obsTime;
-        this.obsComment = obsComment;
         this.obsImage = obsImage;
     }
 

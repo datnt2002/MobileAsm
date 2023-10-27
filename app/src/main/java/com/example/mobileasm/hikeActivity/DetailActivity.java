@@ -17,6 +17,7 @@ import com.example.mobileasm.MyDatabaseHelper;
 import com.example.mobileasm.NavigatorHandler;
 import com.example.mobileasm.R;
 import com.example.mobileasm.obs.AddObsActivity;
+import com.example.mobileasm.obs.ListObsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -27,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     CheckBox parkingAvailable;
     BottomNavigationView nav;
     FloatingActionButton addHikeBtnFloatingMenu;
-    Button addNewObsBtn;
+    Button addNewObsBtn, viewObsBtn;
     int id;
     String hikeName;
     @Override
@@ -66,6 +67,16 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        viewObsBtn = findViewById(R.id.btn_view_observation);
+        viewObsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, ListObsActivity.class);
+                intent.putExtra("hikeName", hikeName);
+                intent.putExtra("hikeId", id);
+                startActivity(intent);
+            }
+        });
 
         hikeNameDetailTv = findViewById(R.id.hike_name_detail);
         hikeLocationDetailTv = findViewById(R.id.hike_location_detail);
