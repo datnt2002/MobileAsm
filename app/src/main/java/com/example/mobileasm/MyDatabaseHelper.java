@@ -72,6 +72,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Add Successfully", Toast.LENGTH_SHORT).show();
             return true;
         }
+
     }
 
     public ArrayList<HikeModel> getAllHike(){
@@ -128,6 +129,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }else{
             Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
         }
+        db.close();
     }
 
 
@@ -139,5 +141,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }else{
             Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
         }
+        db.close();
+    }
+
+    public void deleteAllHikes(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, null, null);
+        db.close();
     }
 }

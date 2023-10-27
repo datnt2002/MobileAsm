@@ -79,9 +79,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                     public void onClick(DialogInterface dialogInterface, int i) {
                         int positionToDelete = holder.getAdapterPosition(); // Get the current position within the adapter
                         if (positionToDelete != RecyclerView.NO_POSITION) {
-                            int idToDelete = hikeLists.get(positionToDelete).getHikeId();
                             MyDatabaseHelper myDb = new MyDatabaseHelper(context);
-                            myDb.deleteData(idToDelete);
+                            myDb.deleteData(id);
                             hikeLists.remove(positionToDelete);
                             notifyDataSetChanged();
                         }
@@ -108,6 +107,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         TextView idTextView, hikeNameTextView, hikeLocationTextView, hikeLengthTextView, hikeDateTextView;
         RelativeLayout mainLayout;
         ImageView editBtn, deleteBtn;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
