@@ -53,7 +53,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_HIKE_DATE + " TEXT, " + COLUMN_AVAILABLE + " INTEGER, "
                 + COLUMN_HIKE_LENGTH + " INTEGER, " + COLUMN_HIKE_LEVEL + " INTEGER, "
                 + COLUMN_HIKE_ESTIMATE + " INTEGER, " + COLUMN_HIKE_DESCRIPTION + " TEXT)";
-
+        db.execSQL(createTableStatement);
 
         String createTableObservation = "CREATE TABLE " + OBS_TABLE_NAME
                 + " (" + COLUMN_OBS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -62,7 +62,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_OBS_WEATHER + " TEXT, " + COLUMN_OBS_IMAGE + " BLOB, "
                 + COLUMN_OBS_COMMENT + " TEXT, " + COLUMN_HIKE_ID + " INTEGER, " +
                 "FOREIGN KEY (" + COLUMN_HIKE_ID + ") REFERENCES " + TABLE_NAME + "(" + COLUMN_HIKE_ID + "))";;
-        db.execSQL(createTableStatement);
+
         db.execSQL(createTableObservation);
     }
 
