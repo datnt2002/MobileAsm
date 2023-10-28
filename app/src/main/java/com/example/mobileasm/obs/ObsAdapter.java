@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileasm.R;
 import com.example.mobileasm.hikeActivity.CustomAdapter;
+import com.example.mobileasm.hikeActivity.UpdateActivity;
 import com.example.mobileasm.models.HikeModel;
 import com.example.mobileasm.models.ObservationsModel;
 
@@ -66,6 +68,16 @@ public class ObsAdapter extends RecyclerView.Adapter<ObsAdapter.ObsViewHolder>{
                 int obsId = obs.getObsId();
                 intent.putExtra("obsId", obsId);
                 activity.startActivity(intent);
+            }
+        });
+
+        holder.editObsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UpdateObsActivity.class);
+                int id = obs.getObsId();
+                intent.putExtra("obsId", id);
+                activity.startActivityForResult(intent, 1);
             }
         });
     }

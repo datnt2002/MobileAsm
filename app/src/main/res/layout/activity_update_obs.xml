@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Observation"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Hike Name"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <TextView
+                android:id="@+id/hike_name_in_add_obs"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:textSize="16sp"
+                android:gravity="center_vertical|start"
+                android:layout_marginRight="5dp"
+                android:text="Hike Name"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Observation"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <EditText
+                android:id="@+id/obs_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="Observation"
+                android:inputType="text"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Observation Date"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <TextView
+                android:id="@+id/obs_date_edit"
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="00/00/0000"
+                android:textSize="16sp"
+                android:gravity="center_vertical|start"
+                android:layout_marginRight="5dp"
+                />
+
+            <Button
+                android:id="@+id/btn_choose_edit_obs_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Time"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <TextView
+                android:id="@+id/obs_time_edit"
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="00:00:00"
+                android:textSize="16sp"
+                android:gravity="center_vertical|start"
+                android:layout_marginRight="5dp"
+                />
+
+            <Button
+                android:id="@+id/btn_choose_edit_obs_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Time" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Sighting"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <EditText
+                android:id="@+id/obs_sighting_edit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="Sighting animals, vegetables"
+                android:inputType="text"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Weather"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <EditText
+                android:id="@+id/obs_weather_edit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="Weather Condition"
+                android:inputType="text"
+                android:textSize="15sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Comment"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|start"
+                />
+            <EditText
+                android:id="@+id/obs_comment_edit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:hint="Comment"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/obs_image_edit"
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            tools:srcCompat="@drawable/ic_image" />
+
+
+        <Button
+            android:id="@+id/btn_submit_edit_obs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Submit" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        >
+        <include layout="@layout/bottom_app_bar"/>
+    </LinearLayout>
+
+</RelativeLayout>
