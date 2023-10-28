@@ -257,4 +257,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
     }
+
+    public void deleteAllObsOfHike(int hikeId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(OBS_TABLE_NAME, COLUMN_HIKE_ID + " = ?", new String[]{String.valueOf(hikeId)});
+        db.close();
+    }
 }

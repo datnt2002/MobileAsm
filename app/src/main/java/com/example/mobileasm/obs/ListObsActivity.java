@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mobileasm.MainActivity;
@@ -32,6 +35,8 @@ public class ListObsActivity extends AppCompatActivity {
     ArrayList<ObservationsModel> obsList;
     ObsAdapter obsAdapter;
     TextView title;
+
+    Button deleteAllObsOfHikeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,5 +76,30 @@ public class ListObsActivity extends AppCompatActivity {
         obsRecyclerView.setAdapter(obsAdapter);
 
         obsRecyclerView.setLayoutManager(new LinearLayoutManager(ListObsActivity.this));
+
+        deleteAllObsOfHikeBtn = findViewById(R.id.reset_obs_database);
+        deleteAllObsOfHikeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListObsActivity.this);
+                builder.setTitle("Delete all observations?");
+                builder.setMessage("Are you sure to delete all observations");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        db.deleteAllObsOfHike(hikeId);
+                        obsList.clear();
+                        obsAdapter.notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.create().show();
+            }
+        });
     }
 }
