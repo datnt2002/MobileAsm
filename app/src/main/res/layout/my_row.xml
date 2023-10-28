@@ -11,7 +11,7 @@
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:padding="20dp"
+           android:padding="15dp"
            android:gravity="center_vertical|start"
            >
            <TextView
@@ -35,7 +35,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/hike_name_label"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:text="Name: "
@@ -53,7 +52,6 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content">
                    <TextView
-                       android:id="@+id/hike_location_label"
                        android:layout_width="60dp"
                        android:layout_height="wrap_content"
                        android:text="Location: "
@@ -68,7 +66,7 @@
 
            </LinearLayout>
            <LinearLayout
-               android:layout_width="100dp"
+               android:layout_width="120dp"
                android:layout_height="match_parent"
                android:orientation="vertical"
                android:gravity="center_vertical|start"
@@ -79,7 +77,6 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content">
                    <TextView
-                       android:id="@+id/hike_length_label"
                        android:layout_width="50dp"
                        android:layout_height="wrap_content"
                        android:text="Length: "
@@ -95,7 +92,6 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content">
                    <TextView
-                       android:id="@+id/hike_date_label"
                        android:layout_width="50dp"
                        android:layout_height="wrap_content"
                        android:text="Date: "

@@ -16,7 +16,6 @@
         >
 
         <TextView
-            android:id="@+id/detailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create Observation"
@@ -62,7 +61,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/obs_name_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Observation"
@@ -90,7 +88,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/obs_date_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Observation Date"
@@ -126,7 +123,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/obs_time_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Time"
@@ -162,7 +158,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/obs_sighting_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Sighting"
@@ -189,7 +184,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/obs_weather_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Weather"
@@ -217,7 +211,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/obs_comment_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Comment"

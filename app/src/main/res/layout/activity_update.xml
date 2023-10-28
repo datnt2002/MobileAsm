@@ -16,7 +16,6 @@
         >
 
         <TextView
-            android:id="@+id/detailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit Hike"
@@ -34,7 +33,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_name_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="@string/HikeName"
@@ -61,7 +59,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_location_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="@string/HikeLocation"
@@ -88,7 +85,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_date_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="@string/HikeDate"
@@ -124,7 +120,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_parking_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="Parking Available"
@@ -149,7 +144,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_length_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="@string/LengthOfHike"
@@ -176,7 +170,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_level_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="@string/HikeLevel"
@@ -204,7 +197,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_estimate_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="@string/HikeEstimate"
@@ -230,7 +222,6 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/hike_description_title_input"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="@string/HikeDescription"
@@ -256,7 +247,13 @@
             android:text="Submit" />
     </LinearLayout>
 
-    <include layout="@layout/bottom_app_bar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true">
+        <include layout="@layout/bottom_app_bar" />
+    </LinearLayout>
+
 
 
 

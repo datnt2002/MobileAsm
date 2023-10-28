@@ -31,6 +31,11 @@ public class AddActivity extends AppCompatActivity {
     CheckBox parkingAvailableCheckbox;
     Button submitAddNewHikeBtn, chooseDateBtn;
     BottomNavigationView nav;
+
+    Calendar calendar = Calendar.getInstance();
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,7 @@ public class AddActivity extends AppCompatActivity {
         hikeNameInput = findViewById(R.id.hike_name_input);
         hikeLocationInput = findViewById(R.id.hike_location_input);
         hikeDateInput = findViewById(R.id.hike_date_input);
+        hikeDateInput.setText(day + "/" + month + "/" + year);
         hikeLengthInput = findViewById(R.id.hike_length_input);
         hikeLevelInput = findViewById(R.id.hike_level_input);
         hikeEstimateInput = findViewById(R.id.hike_estimate_input);

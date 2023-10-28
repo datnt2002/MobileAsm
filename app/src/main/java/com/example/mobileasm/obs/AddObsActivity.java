@@ -97,6 +97,7 @@ public class AddObsActivity extends AppCompatActivity {
         obsTimeInput.setText(currentHour + ":" + currentMinute);
 
         obsImage = findViewById(R.id.obs_image);
+        obsImage.setImageResource(R.drawable.ic_image);
         obsImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,7 +143,7 @@ public class AddObsActivity extends AppCompatActivity {
                         obsCommentInput.setText("");
                         obsDateInput.setText(day + "/" + month + "/" + year);
                         obsTimeInput.setText(currentHour + ":" + currentMinute);
-                        obsImage.setImageURI(null);
+                        obsImage.setImageResource(R.drawable.ic_image);
                         imageBytes = null;
                     }
                 }
