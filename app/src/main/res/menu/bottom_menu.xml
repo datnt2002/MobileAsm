@@ -12,9 +12,9 @@
         android:enabled="false"/>
 
     <item
-        android:id="@+id/search"
-        android:title="Search"
-        android:icon="@drawable/ic_search"/>
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_person"/>
 
 
 </menu>
