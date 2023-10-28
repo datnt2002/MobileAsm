@@ -218,4 +218,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return returnArray;
     }
+
+    public Cursor getObservationDetail(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(OBS_TABLE_NAME, null,"OBS_ID = ?", new String[]{String.valueOf(id)}, null, null, null);
+        return cursor;
+    }
 }

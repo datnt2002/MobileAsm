@@ -37,8 +37,6 @@ public class ListObsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_obs);
 
-
-
         nav = findViewById(R.id.bottomNavigationView);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

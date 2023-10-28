@@ -186,15 +186,6 @@
             android:paddingHorizontal="20dp"
             android:layout_marginBottom="5dp"
             >
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:text="Image"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center_vertical|start"
-                />
            <ImageView
                android:id="@+id/obs_image_detail"
                android:layout_width="match_parent"

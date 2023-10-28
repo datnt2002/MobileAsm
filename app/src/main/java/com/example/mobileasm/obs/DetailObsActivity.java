@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mobileasm.MyDatabaseHelper;
 import com.example.mobileasm.NavigatorHandler;
 import com.example.mobileasm.R;
 import com.example.mobileasm.hikeActivity.AddActivity;
@@ -57,5 +62,42 @@ public class DetailObsActivity extends AppCompatActivity {
         obsWeather = findViewById(R.id.obs_weather_detail);
         obsComment = findViewById(R.id.obs_comment_detail);
         obsImage = findViewById(R.id.obs_image_detail);
+
+        getObservationDetail();
+    }
+
+    void getObservationDetail(){
+        if (getIntent().hasExtra("obsId")){
+            int obsId = getIntent().getIntExtra("obsId", -1);
+            MyDatabaseHelper db = new MyDatabaseHelper(DetailObsActivity.this);
+            Cursor result = db.getObservationDetail(obsId);
+            if (result.getCount() == 0) {
+                Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();
+            }else{
+                if (result.moveToNext()){
+                    String name = result.getString(1);
+                    String date = result.getString(2);
+                    String time = result.getString(3);
+                    String sighting = result.getString(4);
+                    String weather = result.getString(5);
+                    byte[] imageData = result.getBlob(6);
+                    String comment = result.getString(7);
+                    obsName.setText(name);
+                    obsDate.setText(date);
+                    obsTime.setText(time);
+                    obsSighting.setText(sighting);
+                    obsWeather.setText(weather);
+                    obsComment.setText(comment);
+
+                    if (imageData != null) {
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+                        obsImage.setImageBitmap(bitmap);
+                    } else {
+                        // Set a default image if the avatar data is null
+                        obsImage.setImageResource(R.drawable.ic_image);
+                    }
+                }
+            }
+        }
     }
 }

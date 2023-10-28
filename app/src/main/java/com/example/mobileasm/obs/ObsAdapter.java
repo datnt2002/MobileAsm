@@ -2,6 +2,7 @@ package com.example.mobileasm.obs;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -44,7 +45,6 @@ public class ObsAdapter extends RecyclerView.Adapter<ObsAdapter.ObsViewHolder>{
     public void onBindViewHolder(@NonNull ObsAdapter.ObsViewHolder holder, int position) {
         ObservationsModel obs = obsLists.get(position);
 
-
         holder.obsId.setText(String.valueOf(obs.getObsId()));
         holder.obsNameTextView.setText(obs.getObsName());
         holder.obsDateTextView.setText(obs.getObsDate());
@@ -58,6 +58,16 @@ public class ObsAdapter extends RecyclerView.Adapter<ObsAdapter.ObsViewHolder>{
             // Set a default image if the avatar data is null
             holder.imageObsView.setImageResource(R.drawable.ic_image);
         }
+
+        holder.obsListLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailObsActivity.class);
+                int obsId = obs.getObsId();
+                intent.putExtra("obsId", obsId);
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override
