@@ -103,6 +103,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return hikeLists.size();
     }
 
+
+    public void setFilteredList(ArrayList<HikeModel> filteredList){
+        this.hikeLists = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView idTextView, hikeNameTextView, hikeLocationTextView, hikeLengthTextView, hikeDateTextView;

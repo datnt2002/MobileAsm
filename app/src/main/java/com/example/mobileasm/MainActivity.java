@@ -3,16 +3,20 @@ package com.example.mobileasm;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.mobileasm.hikeActivity.AddActivity;
 import com.example.mobileasm.hikeActivity.CustomAdapter;
@@ -22,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     MyDatabaseHelper db;
     ArrayList<HikeModel> hikeList;
     CustomAdapter customAdapter;
-    Button resetDb;
+    ImageView resetDb;
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +97,37 @@ public class MainActivity extends AppCompatActivity {
                 builder.create().show();
             }
         });
+
+
+        searchView = findViewById(R.id.search_input);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return false;
+            }
+        });
+    }
+
+    private void filterList(String newText) {
+        ArrayList<HikeModel> filteredList  = new ArrayList<>();
+        for (HikeModel hike: hikeList){
+            if (hike.getHikeName().toLowerCase().contains(newText.toLowerCase())){
+                filteredList.add(hike);
+            }
+        }
+
+        if (filteredList.isEmpty()){
+            Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
+        }else{
+            customAdapter.setFilteredList(filteredList);
+        }
     }
 
     @Override
