@@ -229,22 +229,21 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-//        cv.put(COLUMN_HIKE_NAME, obs.getHikeName());
-//        cv.put(COLUMN_HIKE_LOCATION, obs.getHikeLocation());
-//        cv.put(COLUMN_HIKE_DATE, obs.getHikeDate());
-//        cv.put(COLUMN_AVAILABLE, obs.isParkingAvailable());
-//        cv.put(COLUMN_HIKE_LENGTH, obs.getHikeLength());
-//        cv.put(COLUMN_HIKE_LEVEL, obs.getHikeLevel());
-//        cv.put(COLUMN_HIKE_ESTIMATE, obs.getHikeEstimate());
-//        cv.put(COLUMN_HIKE_DESCRIPTION, obs.getHikeDescription());
+        cv.put(COLUMN_OBS_NAME, obs.getObsName());
+        cv.put(COLUMN_OBS_DATE, obs.getObsDate());
+        cv.put(COLUMN_OBS_TIME, obs.getObsTime());
+        cv.put(COLUMN_OBS_SIGHTING, obs.getObsSighting());
+        cv.put(COLUMN_OBS_WEATHER, obs.getObsWeather());
+        cv.put(COLUMN_OBS_COMMENT, obs.getObsComment());
+        cv.put(COLUMN_OBS_IMAGE, obs.getObsImage());
 
-//        long result = db.update(TABLE_NAME, cv, "HIKE_ID = ?", new String[]{String.valueOf(id)});
+        long result = db.update(OBS_TABLE_NAME, cv, "OBS_ID = ?", new String[]{String.valueOf(obs.getObsId())});
 
-//        if (result == -1){
-//            Toast.makeText(context, "Update Failed", Toast.LENGTH_SHORT).show();
-//        }else{
-//            Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
-//        }
-        db.close();
+        if (result == -1){
+            Toast.makeText(context, "Update Failed", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
+        }
+//        db.close();
     }
 }

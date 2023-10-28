@@ -1,6 +1,7 @@
 package com.example.mobileasm.obs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,6 +35,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
 
 public class UpdateObsActivity extends AppCompatActivity {
@@ -44,7 +50,7 @@ public class UpdateObsActivity extends AppCompatActivity {
     Button btnChooseEditObsDate, btnChooseEditObsTime, btnSubmitEditObs;
     ImageView obsImageEdit;
     private byte[] imageBytes;
-
+    int obsId;
     Calendar calendar = Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH);
@@ -76,6 +82,7 @@ public class UpdateObsActivity extends AppCompatActivity {
             }
         });
 
+        obsId = getIntent().getIntExtra("obsId", -1);
 
         obsNameEdit = findViewById(R.id.obs_name_edit);
         obsSightingEdit = findViewById(R.id.obs_sighting_edit);
@@ -118,10 +125,9 @@ public class UpdateObsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 boolean isValidated = validateInput();
                 if (isValidated){
-                    ObservationsModel obs = new ObservationsModel(-1, obsNameEdit.getText().toString(), obsDateEdit.getText().toString(), obsTimeEdit.getText().toString(), obsCommentEdit.getText().toString(), obsSightingEdit.getText().toString(), obsWeatherEdit.getText().toString(), imageBytes);
-
+                    ObservationsModel obs = new ObservationsModel(obsId, obsNameEdit.getText().toString(), obsDateEdit.getText().toString(), obsTimeEdit.getText().toString(), obsCommentEdit.getText().toString(), obsSightingEdit.getText().toString(), obsWeatherEdit.getText().toString(), imageBytes);
                     MyDatabaseHelper db = new MyDatabaseHelper(UpdateObsActivity.this);
-//                    db.addObservation(obs, hikeId);
+                    db.updateObservationData(obs);
                 }
             }
         });
@@ -162,6 +168,41 @@ public class UpdateObsActivity extends AppCompatActivity {
                     }
                 }
             }
+        }
+    }
+
+
+    private byte[] getObsImage(InputStream inputStream) {
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                byteArrayOutputStream.write(buffer, 0, bytesRead);
+            }
+            return byteArrayOutputStream.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                imageBytes = getObsImage(inputStream);
+                obsImageEdit.setImageURI(imageUri);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            // Handle errors from ImagePicker
+            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
         }
     }
 
