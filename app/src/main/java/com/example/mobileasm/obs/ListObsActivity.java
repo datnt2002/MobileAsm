@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.mobileasm.MainActivity;
 import com.example.mobileasm.MyDatabaseHelper;
@@ -30,6 +31,7 @@ public class ListObsActivity extends AppCompatActivity {
     MyDatabaseHelper db;
     ArrayList<ObservationsModel> obsList;
     ObsAdapter obsAdapter;
+    TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +61,9 @@ public class ListObsActivity extends AppCompatActivity {
 
         int hikeId = getIntent().getIntExtra("hikeId", -1);
         String hikeName = getIntent().getStringExtra("hikeName");
-        Log.d("add obs", " " + hikeId);
-        Log.d("add obs1", " " + hikeName);
+
+        title = findViewById(R.id.title_list_obs);
+        title.setText("Observations Of " + hikeName);
 
         obsRecyclerView = findViewById(R.id.obsRecyclerView);
         db = new MyDatabaseHelper(ListObsActivity.this);
@@ -68,6 +71,7 @@ public class ListObsActivity extends AppCompatActivity {
 
         obsAdapter = new ObsAdapter(ListObsActivity.this, this, obsList);
         obsRecyclerView.setAdapter(obsAdapter);
+
         obsRecyclerView.setLayoutManager(new LinearLayoutManager(ListObsActivity.this));
     }
 }
