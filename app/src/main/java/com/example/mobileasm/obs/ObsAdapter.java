@@ -1,7 +1,9 @@
 package com.example.mobileasm.obs;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobileasm.MyDatabaseHelper;
 import com.example.mobileasm.R;
 import com.example.mobileasm.hikeActivity.CustomAdapter;
 import com.example.mobileasm.hikeActivity.UpdateActivity;
@@ -78,6 +81,35 @@ public class ObsAdapter extends RecyclerView.Adapter<ObsAdapter.ObsViewHolder>{
                 int id = obs.getObsId();
                 intent.putExtra("obsId", id);
                 activity.startActivityForResult(intent, 1);
+            }
+        });
+
+        holder.deleteObsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = obs.getObsId();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Delete this observation?");
+                builder.setMessage("Are you sure to delete this observation");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int positionToDelete = holder.getAdapterPosition(); // Get the current position within the adapter
+                        if (positionToDelete != RecyclerView.NO_POSITION) {
+                            MyDatabaseHelper myDb = new MyDatabaseHelper(context);
+                            myDb.deleteObservation(id);
+                            obsLists.remove(positionToDelete);
+                            notifyDataSetChanged();
+                        }
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.create().show();
             }
         });
     }

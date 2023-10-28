@@ -137,7 +137,6 @@ public class UpdateObsActivity extends AppCompatActivity {
     void getObservationData(){
         if (getIntent().hasExtra("obsId")){
             int obsId = getIntent().getIntExtra("obsId", -1);
-            Log.d("YourTag1", "Clicked ID: " + obsId);
             MyDatabaseHelper db = new MyDatabaseHelper(UpdateObsActivity.this);
             Cursor result = db.getObservationDetail(obsId);
             if (result.getCount() == 0) {

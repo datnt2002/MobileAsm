@@ -246,4 +246,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
 //        db.close();
     }
+
+    public void deleteObservation(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(OBS_TABLE_NAME, "OBS_ID=?", new String[]{String.valueOf(id)});
+        if (result == -1){
+            Toast.makeText(context, "Delete Failed", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
+        }
+        db.close();
+    }
 }
