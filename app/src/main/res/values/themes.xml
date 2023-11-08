@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MobileAsm" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/lavender</item>
-        <item name="colorPrimaryVariant">@color/lavender</item>
+        <item name="colorPrimary">#DC9A76</item>
+        <item name="colorPrimaryVariant">#DC9A76</item>
 
     </style>
 
