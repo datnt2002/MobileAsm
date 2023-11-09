@@ -1,5 +1,4 @@
 package com.example.mobileasm.hikeActivity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,16 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mobileasm.MyDatabaseHelper;
 import com.example.mobileasm.R;
 import com.example.mobileasm.models.HikeModel;
-
 import java.util.ArrayList;
-
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<HikeModel> hikeLists;
@@ -31,7 +26,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         this.context = context;
         this.hikeLists = hikeLists;
     }
-
     @NonNull
     @Override
     public CustomAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +33,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         View view = inflater.inflate(R.layout.my_row, parent, false);
         return new MyViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         HikeModel hike = hikeLists.get(position);
@@ -67,7 +60,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 activity.startActivityForResult(intent, 1);
             }
         });
-
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,20 +89,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return hikeLists.size();
     }
-
-
     public void setFilteredList(ArrayList<HikeModel> filteredList){
         this.hikeLists = filteredList;
         notifyDataSetChanged();
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder{
-
         TextView idTextView, hikeNameTextView, hikeLocationTextView, hikeLengthTextView, hikeDateTextView;
         RelativeLayout mainLayout;
         ImageView editBtn, deleteBtn;

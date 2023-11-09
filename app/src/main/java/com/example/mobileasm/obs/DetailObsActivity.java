@@ -1,8 +1,6 @@
 package com.example.mobileasm.obs;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -13,27 +11,22 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.mobileasm.MyDatabaseHelper;
 import com.example.mobileasm.NavigatorHandler;
 import com.example.mobileasm.R;
 import com.example.mobileasm.hikeActivity.AddActivity;
-import com.example.mobileasm.hikeActivity.DetailActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-
 public class DetailObsActivity extends AppCompatActivity {
     BottomNavigationView nav;
     FloatingActionButton addHikeBtnFloatingMenu;
-
     TextView obsName, obsDate, obsTime, obsSighting, obsWeather, obsComment;
     ImageView obsImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_obs);
-
         nav = findViewById(R.id.bottomNavigationView);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -44,7 +37,6 @@ public class DetailObsActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         addHikeBtnFloatingMenu = findViewById(R.id.add_hike_btn_floating);
         addHikeBtnFloatingMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +45,6 @@ public class DetailObsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
         obsName = findViewById(R.id.obs_name_detail);
         obsDate = findViewById(R.id.obs_date_detail);
         obsTime = findViewById(R.id.obs_time_detail);
@@ -62,10 +52,8 @@ public class DetailObsActivity extends AppCompatActivity {
         obsWeather = findViewById(R.id.obs_weather_detail);
         obsComment = findViewById(R.id.obs_comment_detail);
         obsImage = findViewById(R.id.obs_image_detail);
-
         getObservationDetail();
     }
-
     void getObservationDetail(){
         if (getIntent().hasExtra("obsId")){
             int obsId = getIntent().getIntExtra("obsId", -1);
@@ -88,7 +76,6 @@ public class DetailObsActivity extends AppCompatActivity {
                     obsSighting.setText(sighting);
                     obsWeather.setText(weather);
                     obsComment.setText(comment);
-
                     if (imageData != null) {
                         Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
                         obsImage.setImageBitmap(bitmap);

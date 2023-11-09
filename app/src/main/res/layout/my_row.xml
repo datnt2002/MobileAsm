@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/mainLayout"
     >
-
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -23,7 +22,6 @@
                android:textStyle="bold"
                android:layout_marginRight="10dp"
             />
-
            <LinearLayout
                android:layout_width="150dp"
                android:layout_height="match_parent"
@@ -47,7 +45,6 @@
                         android:text="Name"
                         />
                 </LinearLayout>
-
                <LinearLayout
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content">
@@ -63,7 +60,6 @@
                        android:text="Location"
                        />
                </LinearLayout>
-
            </LinearLayout>
            <LinearLayout
                android:layout_width="120dp"
@@ -71,7 +67,6 @@
                android:orientation="vertical"
                android:gravity="center_vertical|start"
                android:layout_marginRight="10dp"
-
                >
                <LinearLayout
                    android:layout_width="wrap_content"
@@ -104,7 +99,6 @@
                        android:text="Date"
                        />
                </LinearLayout>
-
            </LinearLayout>
            <LinearLayout
                android:layout_width="wrap_content"
@@ -127,9 +121,4 @@
                    />
            </LinearLayout>
        </LinearLayout>
-
-
-
-
-
 </RelativeLayout>

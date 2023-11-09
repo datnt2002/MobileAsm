@@ -1,8 +1,6 @@
 package com.example.mobileasm.hikeActivity;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -17,7 +15,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.mobileasm.MyDatabaseHelper;
 import com.example.mobileasm.NavigatorHandler;
 import com.example.mobileasm.R;
@@ -25,11 +22,8 @@ import com.example.mobileasm.models.HikeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-
 import java.util.Calendar;
-
 public class UpdateActivity extends AppCompatActivity {
-
     EditText hikeNameEditText, hikeLocationEditText, hikeLengthEditText,  hikeLevelEditText, hikeEstimateEditText, hikeDescriptionEditText;
     CheckBox availableEditCheck;
     BottomNavigationView nav;
@@ -41,7 +35,6 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
-
         nav = findViewById(R.id.bottomNavigationView);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -52,7 +45,6 @@ public class UpdateActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         addHikeBtnFloatingMenu = findViewById(R.id.add_hike_btn_floating);
         addHikeBtnFloatingMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +53,6 @@ public class UpdateActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         hikeNameEditText = findViewById(R.id.hike_name_edit_input);
         hikeLocationEditText = findViewById(R.id.hike_location_edit_input);
         hikeDateEditText = findViewById(R.id.hike_date_edit_input);
@@ -77,9 +68,7 @@ public class UpdateActivity extends AppCompatActivity {
                 datePickerDialog();
             }
         });
-
         updateBtn = findViewById(R.id.btn_submit_edit_hike);
-
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,15 +80,10 @@ public class UpdateActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(UpdateActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
         getIntentData();
-
-
     }
-
     void getIntentData(){
         if (getIntent().hasExtra("id")){
             id = getIntent().getIntExtra("id", -1);
@@ -129,13 +113,11 @@ public class UpdateActivity extends AppCompatActivity {
             }
         }
     }
-
     private void datePickerDialog(){
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -144,35 +126,29 @@ public class UpdateActivity extends AppCompatActivity {
                 hikeDateEditText.setText(d + "/" + m + "/" + y);
             }
         }, year, month, day);
-
         dialog.show();
     }
-
     private boolean validateInput(){
         if (TextUtils.isEmpty(hikeNameEditText.getText().toString())){
             hikeNameEditText.setError("Please enter hike name");
             return false;
         }
-
         // Validate hike location
         if (TextUtils.isEmpty(hikeLocationEditText.getText().toString())) {
             hikeLocationEditText.setError("Please enter hike location");
             return false;
         }
 
-
         // Validate hike length
         if (TextUtils.isEmpty(hikeLengthEditText.getText().toString())) {
             hikeLengthEditText.setError("Please enter hike length");
             return false;
         }
-
         // Validate hike level
         if (TextUtils.isEmpty(hikeLevelEditText.getText().toString())) {
             hikeLevelEditText.setError("Please enter hike level");
             return false;
         }
-
         // Validate hike estimate
         if (TextUtils.isEmpty(hikeEstimateEditText.getText().toString())) {
             hikeEstimateEditText.setError("Please enter hike estimate");

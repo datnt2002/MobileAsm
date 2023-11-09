@@ -1,5 +1,4 @@
 package com.example.mobileasm.hikeActivity;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -11,27 +10,21 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.mobileasm.MyDatabaseHelper;
 import com.example.mobileasm.NavigatorHandler;
 import com.example.mobileasm.R;
 import com.example.mobileasm.models.HikeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
 import java.util.Calendar;
-
 public class AddActivity extends AppCompatActivity {
-
     TextView hikeDateInput;
     EditText hikeNameInput, hikeLocationInput, hikeLengthInput, hikeLevelInput, hikeEstimateInput, hikeDescriptionInput;
     CheckBox parkingAvailableCheckbox;
     Button submitAddNewHikeBtn, chooseDateBtn;
     BottomNavigationView nav;
-
     Calendar calendar = Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH);
@@ -40,9 +33,7 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-
         nav = findViewById(R.id.bottomNavigationView);
-
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -52,7 +43,6 @@ public class AddActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         hikeNameInput = findViewById(R.id.hike_name_input);
         hikeLocationInput = findViewById(R.id.hike_location_input);
         hikeDateInput = findViewById(R.id.hike_date_input);
@@ -61,9 +51,7 @@ public class AddActivity extends AppCompatActivity {
         hikeLevelInput = findViewById(R.id.hike_level_input);
         hikeEstimateInput = findViewById(R.id.hike_estimate_input);
         hikeDescriptionInput = findViewById(R.id.hike_description_input);
-
         parkingAvailableCheckbox = findViewById(R.id.parking_available_checkbox);
-
         chooseDateBtn = findViewById(R.id.btn_choose_date);
         chooseDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +59,6 @@ public class AddActivity extends AppCompatActivity {
                 datePickerDialog();
             }
         });
-
         submitAddNewHikeBtn = findViewById(R.id.btn_submit_add_new_hike);
         submitAddNewHikeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +66,6 @@ public class AddActivity extends AppCompatActivity {
                 boolean isValidated = validateInput();
                 if (isValidated){
                     HikeModel newHike = new HikeModel(-1, hikeNameInput.getText().toString(), hikeLocationInput.getText().toString(), hikeDateInput.getText().toString(), parkingAvailableCheckbox.isChecked() ,Integer.parseInt(hikeLengthInput.getText().toString()), Integer.parseInt(hikeLevelInput.getText().toString()), Integer.parseInt(hikeEstimateInput.getText().toString()), hikeDescriptionInput.getText().toString());
-
                     MyDatabaseHelper db = new MyDatabaseHelper(AddActivity.this);
                     boolean isSuccess = db.addHike(newHike);
                     if (isSuccess){
@@ -96,13 +82,11 @@ public class AddActivity extends AppCompatActivity {
             }
         });
     }
-
     private void datePickerDialog(){
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -111,42 +95,50 @@ public class AddActivity extends AppCompatActivity {
                 hikeDateInput.setText(d + "/" + m + "/" + y);
             }
         }, year, month, day);
-
         dialog.show();
     }
-
     private boolean validateInput(){
         if (TextUtils.isEmpty(hikeNameInput.getText().toString())){
             hikeNameInput.setError("Please enter hike name");
             return false;
         }
-
         // Validate hike location
         if (TextUtils.isEmpty(hikeLocationInput.getText().toString())) {
             hikeLocationInput.setError("Please enter hike location");
             return false;
         }
-
-
-
         // Validate hike length
         if (TextUtils.isEmpty(hikeLengthInput.getText().toString())) {
             hikeLengthInput.setError("Please enter hike length");
             return false;
-
+        }else {
+            int hikeLength = Integer.parseInt(hikeLengthInput.getText().toString());
+            if (hikeLength <= 0) {
+                hikeLengthInput.setError("Hike length must be greater than 0");
+                return false;
+            }
         }
-
         // Validate hike level
         if (TextUtils.isEmpty(hikeLevelInput.getText().toString())) {
             hikeLevelInput.setError("Please enter hike level");
             return false;
-
+        }else {
+            int hikeLevel = Integer.parseInt(hikeLevelInput.getText().toString());
+            if (hikeLevel <= 0) {
+                hikeLevelInput.setError("Hike level must be greater than 0");
+                return false;
+            }
         }
-
         // Validate hike estimate
         if (TextUtils.isEmpty(hikeEstimateInput.getText().toString())) {
             hikeEstimateInput.setError("Please enter hike estimate");
             return false;
+        }else {
+            int hikeEstimate = Integer.parseInt(hikeEstimateInput.getText().toString());
+            if (hikeEstimate <= 0) {
+                hikeEstimateInput.setError("Hike estimate must be greater than 0");
+                return false;
+            }
         }
         return true;
     }

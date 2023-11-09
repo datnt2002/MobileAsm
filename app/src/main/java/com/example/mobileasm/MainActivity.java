@@ -1,35 +1,26 @@
 package com.example.mobileasm;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
-import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.mobileasm.hikeActivity.AddActivity;
 import com.example.mobileasm.hikeActivity.CustomAdapter;
 import com.example.mobileasm.models.HikeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-
 import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-
     FloatingActionButton addHikeBtnFloatingMenu;
     BottomNavigationView nav;
     RecyclerView recyclerView;
@@ -42,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         nav = findViewById(R.id.bottomNavigationView);
-
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -54,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         addHikeBtnFloatingMenu = findViewById(R.id.add_hike_btn_floating);
         addHikeBtnFloatingMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,16 +51,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
         recyclerView = findViewById(R.id.recyclerView);
         db = new MyDatabaseHelper(MainActivity.this);
         hikeList = db.getAllHike();
-
         customAdapter = new CustomAdapter(MainActivity.this,this, hikeList);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
         resetDb = findViewById(R.id.reset_database);
         resetDb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 builder.create().show();
             }
         });
-
-
         searchView = findViewById(R.id.search_input);
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -106,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterList(newText);
@@ -114,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void filterList(String newText) {
         ArrayList<HikeModel> filteredList  = new ArrayList<>();
         for (HikeModel hike: hikeList){
@@ -122,14 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 filteredList.add(hike);
             }
         }
-
         if (filteredList.isEmpty()){
             Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
         }else{
             customAdapter.setFilteredList(filteredList);
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

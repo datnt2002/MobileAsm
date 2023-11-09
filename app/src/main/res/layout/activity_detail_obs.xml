@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
     <LinearLayout
         android:id="@+id/detail_layout"
         android:layout_width="match_parent"
@@ -15,7 +14,6 @@
         android:gravity="center"
         android:layout_marginTop="30dp"
         >
-
         <TextView
             android:id="@+id/detailTitle"
             android:layout_width="wrap_content"
@@ -26,7 +24,6 @@
             android:textColor="@color/black"
             android:layout_marginBottom="10dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +49,6 @@
                 android:textSize="15sp"
                 android:gravity="center_vertical|start"/>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,7 +101,6 @@
                 android:gravity="center_vertical|start"
                 />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -178,7 +173,6 @@
                 android:textSize="15sp"
                 android:gravity="center_vertical|start"/>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -191,9 +185,7 @@
                android:layout_width="match_parent"
                android:layout_height="100dp"/>
         </LinearLayout>
-
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -201,8 +193,4 @@
         >
         <include layout="@layout/bottom_app_bar" />
     </LinearLayout>
-
-
-
-
 </RelativeLayout>
